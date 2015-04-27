@@ -1,6 +1,7 @@
 setwd("C:/Alex/Coursera")
 library(data.table)
 
+#Import
 power <- fread("C:/Alex/Coursera/household_power_consumption.csv", sep = ";", header = TRUE, nrow = 2075259)
 power$Date_New <- as.Date(power$Date, "%d/%m/%Y")
 mydata <- subset(power,Date_New >= "2007-02-01" & Date_New <= "2007-02-02")
@@ -13,6 +14,7 @@ mydata$DateTime <- as.POSIXct(mydata$datetime)
 
 head(mydata)
 
+#Plot
 dev.copy(png, file="plot4.png", height=480, width=480)
 par(mfrow = c(2,2))
 with(mydata, {
