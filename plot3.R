@@ -12,6 +12,14 @@ mydata$datetime <- paste(mydata$Date, mydata$Time)
 mydata$DateTime <- as.POSIXct(mydata$datetime)
 
 head(mydata)
-plot(mydata$DateTime, mydata$Global_active_power, type = "l", ylab = "Global Active Power (kilowatts)", xlab = "")
-dev.copy(png, file="plot2.png", height=480, width=480)
+
+dev.copy(png, file="plot3.png", height=480, width=480)
+with(mydata, {
+	plot(mydata$DateTime, mydata$Sub_metering_1, type = "l", ylab = "Energy sub metering", xlab = "")
+	lines(mydata$DateTime, mydata$Sub_metering_2, type = "l",col = "red")
+	lines(mydata$DateTime, mydata$Sub_metering_3, type = "l", col = "blue")
+	legend("topright", col = c("black","red","blue"), lty = 1, lwd = 1, legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
+	})
+
 dev.off()
+
